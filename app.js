@@ -17,3 +17,16 @@ document.querySelector('#copy-address').addEventListener('click', async () => {
   catch { status.textContent = address; }
 });
 document.querySelector('#year').textContent = new Date().getFullYear();
+const photoDialog = document.querySelector('#photo-dialog');
+let photoTrigger;
+document.querySelectorAll('[data-full]').forEach(button => button.addEventListener('click', () => {
+ photoTrigger = button;
+ const picture = document.querySelector('#full-photo');
+ picture.src = button.dataset.full;
+ picture.alt = button.dataset.caption + ' 실제 시술 전후 사진';
+ document.querySelector('#photo-caption').textContent = button.dataset.caption;
+ photoDialog.showModal();
+}));
+photoDialog.querySelector('.dialog-close').addEventListener('click',()=>photoDialog.close());
+photoDialog.addEventListener('click',e=>{if(e.target===photoDialog)photoDialog.close();});
+photoDialog.addEventListener('close',()=>photoTrigger?.focus());
