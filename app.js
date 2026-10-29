@@ -38,3 +38,19 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'Intersect
   element.classList.add('reveal');revealObserver.observe(element);
  });
 }
+
+const heroVideo = document.querySelector('#hero-video');
+const heroVideoToggle = document.querySelector('#hero-video-toggle');
+if(heroVideo && heroVideoToggle){
+ const syncHeroVideoButton = () => {
+  heroVideoToggle.textContent = heroVideo.paused ? '영상 재생 ▶' : '일시정지 Ⅱ';
+  heroVideoToggle.setAttribute('aria-label',heroVideo.paused ? '히어로 영상 재생' : '히어로 영상 일시정지');
+ };
+ heroVideo.muted = true;
+ heroVideo.addEventListener('play',syncHeroVideoButton);
+ heroVideo.addEventListener('pause',syncHeroVideoButton);
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){heroVideo.autoplay=false;heroVideo.pause();}
+ else {heroVideo.play().catch(syncHeroVideoButton);}
+ heroVideoToggle.addEventListener('click',()=>{if(heroVideo.paused){heroVideo.play().catch(syncHeroVideoButton);}else{heroVideo.pause();}});
+ syncHeroVideoButton();
+}
