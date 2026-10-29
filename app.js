@@ -30,3 +30,11 @@ document.querySelectorAll('[data-full]').forEach(button => button.addEventListen
 photoDialog.querySelector('.dialog-close').addEventListener('click',()=>photoDialog.close());
 photoDialog.addEventListener('click',e=>{if(e.target===photoDialog)photoDialog.close();});
 photoDialog.addEventListener('close',()=>photoTrigger?.focus());
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+ const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+  if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}
+ }),{threshold:0.08});
+ document.querySelectorAll('.intro-grid,.principles,.section-heading,.case,.menu-grid,.director-grid,.steps,.hygiene,.faq-grid,.contact-grid,.studio-photo').forEach(element=>{
+  element.classList.add('reveal');revealObserver.observe(element);
+ });
+}
