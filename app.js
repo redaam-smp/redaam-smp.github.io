@@ -81,3 +81,15 @@ function resumeVisibleFilms() {
 document.addEventListener('visibilitychange',resumeVisibleFilms);
 window.addEventListener('pageshow',resumeVisibleFilms);
 document.addEventListener('pointerdown',resumeVisibleFilms,{once:true,passive:true});
+
+// One concern at a time keeps the image and its explanation connected.
+document.querySelectorAll('[data-concern]').forEach(button => {
+ button.addEventListener('click', () => {
+  document.querySelectorAll('[data-concern]').forEach(item => {
+   const active = item === button;
+   item.setAttribute('aria-pressed', String(active));
+   item.classList.toggle('active', active);
+  });
+  document.querySelectorAll('.concern-panel').forEach(panel => { panel.hidden = panel.id !== button.getAttribute('aria-controls'); });
+ });
+});
