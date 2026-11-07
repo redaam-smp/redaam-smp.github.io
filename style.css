@@ -55,3 +55,9 @@ body{font-family:'Noto Sans KR',sans-serif;font-weight:400;padding-bottom:112px}
 
 /* Use the exact framing supplied by the owner. */
 .concern-panel.concern-part figure img,.concern-panel.concern-crown figure img{transform:none;object-fit:contain;object-position:center;background:#111}@media(max-width:700px){.concern-panel.concern-part figure img,.concern-panel.concern-crown figure img{transform:none;object-fit:contain;object-position:center}}
+
+/* Requested sequential bounce on the three key facts. */
+.key-facts>div{animation:fact-bounce 3.8s ease-in-out infinite!important;will-change:transform}.key-facts>div:nth-child(2){animation-delay:.22s!important}.key-facts>div:nth-child(3){animation-delay:.44s!important}.key-facts strong{font-size:21px;line-height:1.6}@keyframes fact-bounce{0%,12%,36%,100%{transform:translateY(0)}20%{transform:translateY(-12px)}26%{transform:translateY(0)}31%{transform:translateY(-5px)}}
+/* Keep text readable while its entrance animates; repeat when entering view. */
+.reveal{opacity:1;transform:translateY(0);transition:opacity .65s ease,transform .65s ease!important}.reveal.is-visible{animation:section-arrive .75s ease both!important}@keyframes section-arrive{from{opacity:.15;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.key-facts strong{font-size:16px}.key-facts>div:last-child strong{font-size:14px;max-width:7em}}

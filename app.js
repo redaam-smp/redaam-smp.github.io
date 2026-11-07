@@ -41,9 +41,9 @@ photoDialog.addEventListener('click',e=>{if(e.target===photoDialog)photoDialog.c
 photoDialog.addEventListener('close',()=>photoTrigger?.focus());
 if ('IntersectionObserver' in window) {
  const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-  if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}
+  entry.target.classList.toggle('is-visible', entry.isIntersecting);
  }),{threshold:0.08});
- document.querySelectorAll('.intro-grid,.principles,.section-heading,.case,.menu-grid,.director-grid,.steps,.hygiene,.faq-grid,.contact-grid,.studio-photo,.key-facts,.process-films').forEach(element=>{
+ document.querySelectorAll('.intro-grid,.principles,.section-heading,.case,.menu-grid,.director-grid,.steps,.hygiene,.faq-grid,.contact-grid,.studio-photo,.process-films').forEach(element=>{
   element.classList.add('reveal');revealObserver.observe(element);
  });
 }
