@@ -61,3 +61,10 @@ body{font-family:'Noto Sans KR',sans-serif;font-weight:400;padding-bottom:112px}
 /* Keep text readable while its entrance animates; repeat when entering view. */
 .reveal{opacity:1;transform:translateY(0);transition:opacity .65s ease,transform .65s ease!important}.reveal.is-visible{animation:section-arrive .75s ease both!important}@keyframes section-arrive{from{opacity:.15;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:700px){.key-facts strong{font-size:16px}.key-facts>div:last-child strong{font-size:14px;max-width:7em}}
+
+/* Emphasize the first-experience offer with a gentle repeating lift. */
+.hero-event h2{display:inline-block;transform-origin:left center;animation:offer-emphasis 4s ease-in-out infinite!important;will-change:transform}
+.hero-event h2 strong{display:inline-block;position:relative}
+.hero-event h2 strong:after{content:'';position:absolute;left:0;right:0;bottom:-5px;height:2px;background:currentColor;transform-origin:left;animation:offer-underline 4s ease-in-out infinite!important}
+@keyframes offer-emphasis{0%,12%,38%,100%{transform:translateY(0) scale(1)}20%{transform:translateY(-7px) scale(1.025)}27%{transform:translateY(0) scale(1)}32%{transform:translateY(-3px) scale(1.01)}}
+@keyframes offer-underline{0%,10%{transform:scaleX(0);opacity:0}22%,65%{transform:scaleX(1);opacity:1}85%,100%{transform:scaleX(1);opacity:0}}
