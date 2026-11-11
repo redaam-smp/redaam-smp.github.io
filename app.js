@@ -1,24 +1,10 @@
 const filterButtons = document.querySelectorAll('[data-filter]');
-const grid = document.querySelector('.portfolio-grid');
-const moreCases = document.querySelector('#more-cases');
-let activeFilter = 'all';
-let expandedCases = false;
-function updateCases() {
- const matches = [...document.querySelectorAll('[data-category]')].filter(card => activeFilter === 'all' || card.dataset.category === activeFilter);
- document.querySelectorAll('[data-category]').forEach(card => { card.hidden = !matches.includes(card) || (!expandedCases && matches.indexOf(card) >= 3); });
- grid.classList.toggle('filtered', activeFilter !== 'all');
- moreCases.hidden = matches.length <= 3;
- moreCases.setAttribute('aria-expanded', String(expandedCases));
- moreCases.innerHTML = expandedCases ? '시술 사례 접기 <span>−</span>' : `시술 사례 더 보기 <span>+${Math.max(0,matches.length - 3)}</span>`;
+function showCases(category) {
+ document.querySelectorAll('[data-category]').forEach(card => {card.hidden = card.dataset.category !== category;});
+ filterButtons.forEach(button => {const active=button.dataset.filter===category;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
 }
-filterButtons.forEach(button => button.addEventListener('click', () => {
- activeFilter = button.dataset.filter;
- expandedCases = false;
- filterButtons.forEach(item => { const selected = item === button; item.classList.toggle('active', selected); item.setAttribute('aria-pressed', String(selected)); });
- updateCases();
-}));
-moreCases.addEventListener('click', () => { expandedCases = !expandedCases; updateCases(); });
-updateCases();
+filterButtons.forEach(button => button.addEventListener('click',()=>showCases(button.dataset.filter)));
+showCases('part');
 document.querySelector('#copy-address').addEventListener('click', async () => {
   const status = document.querySelector('#copy-status');
   const address = '경기 화성시 효행구 봉담읍 와우안길 80 서후 팰리스 3층 301호';

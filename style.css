@@ -115,3 +115,32 @@ body{font-family:'Noto Sans KR',sans-serif;font-weight:400;padding-bottom:112px}
 .brand-tagline{font-size:21px;line-height:1.7;margin-top:25px}.brand-results{font-size:13px;gap:35px;margin-top:25px}
 .hero-followup.wrap{width:calc(100% - 40px)}.hero-followup .hero-event{padding-top:30px}.hero-followup .key-facts{margin-bottom:10px}
 }
+
+/* Larger offer and a focused, three-category results gallery. */
+.hero-event h2{font-size:38px;line-height:1.5;letter-spacing:-1px}
+.hero-event h2 strong{font-size:1.12em}
+.portfolio .filters{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid #ccc;margin:32px 0}
+.portfolio .filters button{border:0;border-radius:0;background:white;color:#777;border-bottom:3px solid transparent;font-size:20px;padding:17px 8px}
+.portfolio .filters button.active{color:#080808;border-bottom-color:#080808;font-weight:600}
+.portfolio .portfolio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 28px}
+.portfolio .case[hidden]{display:none!important}
+.portfolio .case-photo{display:block;width:100%;height:auto;aspect-ratio:auto;padding:0;border:0;background:#fff}
+.portfolio .case-photo img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+.portfolio .portfolio-notice{margin-top:24px}
+.process-films figure{align-items:start}
+.process-films figcaption{padding-top:16px}
+.process-films h3{line-height:1.6;margin:12px 0 14px}
+.process-films p{line-height:1.9;margin:0}
+@media(max-width:700px){
+.hero-event h2{font-size:28px;line-height:1.5;letter-spacing:-.8px;display:block}
+.hero-event h2 strong{font-size:34px;white-space:nowrap}
+.portfolio .filters button{font-size:17px;padding:15px 6px}
+.portfolio .portfolio-grid{grid-template-columns:1fr;gap:34px}
+.portfolio .case-photo{aspect-ratio:auto}
+.process-films{gap:28px}.process-films figure{align-items:start;gap:18px}
+.process-films figcaption{align-self:start;padding:14px 0 0;margin:0;border-top:1px solid #ccc}
+.process-films figcaption>span{display:block;line-height:1.5;margin:0}
+.process-films h3{font-size:16px;line-height:1.6;margin:14px 0}
+.process-films p{font-size:12px;line-height:1.9;margin:0}
+}
+.process-section .section{padding-bottom:45px}.portfolio.section{padding-top:45px}
