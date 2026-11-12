@@ -1,10 +1,21 @@
 const filterButtons = document.querySelectorAll('[data-filter]');
-function showCases(category) {
- document.querySelectorAll('[data-category]').forEach(card => {card.hidden = card.dataset.category !== category;});
- filterButtons.forEach(button => {const active=button.dataset.filter===category;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
+let galleryCategory='women';
+let galleryLimit=4;
+function showCases(category, reset=true) {
+ galleryCategory=category;
+ if(reset) galleryLimit=4;
+ const cards=[...document.querySelectorAll('[data-category]')];
+ const matches=cards.filter(card=>card.dataset.category===category);
+ cards.forEach(card=>{card.hidden=card.dataset.category!==category || matches.indexOf(card)>=galleryLimit;});
+ filterButtons.forEach(button=>{const active=button.dataset.filter===category;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));});
+ document.querySelector('#gallery-count').textContent=`${category==='women'?'여자':'남자'} 시술 사진 ${matches.length}장`;
+ const more=document.querySelector('#gallery-more');
+ more.hidden=galleryLimit>=matches.length;
+ more.innerHTML=`사진 더 보기 <span>+${Math.min(4,Math.max(0,matches.length-galleryLimit))}</span>`;
 }
-filterButtons.forEach(button => button.addEventListener('click',()=>showCases(button.dataset.filter)));
-showCases('part');
+filterButtons.forEach(button=>button.addEventListener('click',()=>showCases(button.dataset.filter)));
+document.querySelector('#gallery-more').addEventListener('click',()=>{galleryLimit+=4;showCases(galleryCategory,false);});
+showCases('women');
 document.querySelector('#copy-address').addEventListener('click', async () => {
   const status = document.querySelector('#copy-status');
   const address = '경기 화성시 효행구 봉담읍 와우안길 80 서후 팰리스 3층 301호';

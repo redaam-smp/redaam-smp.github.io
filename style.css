@@ -172,3 +172,5 @@ body{font-family:'Noto Sans KR',sans-serif;font-weight:400;padding-bottom:112px}
 /* Enlarge comparison section and card headings. */
 .dot-heading h2{font-size:52px;line-height:1.45}.dot-card h3{font-size:29px;line-height:1.5}
 @media(max-width:700px){.dot-heading h2{font-size:36px;line-height:1.5}.dot-card h3{font-size:25px;line-height:1.55;letter-spacing:-.8px}}
+
+.portfolio .filters.gender-filters{grid-template-columns:repeat(2,1fr);margin-bottom:15px}.gallery-count{font-size:12px;color:#777;margin-bottom:24px;letter-spacing:.3px}.gallery-more{display:flex;align-items:center;justify-content:space-between;width:100%;background:white;border:1px solid #999;padding:17px 24px;font:inherit;font-size:15px;margin-top:34px;min-height:54px}.gallery-more[hidden]{display:none}.gallery-more:hover{background:#080808;color:white}.portfolio .case-photo img{width:100%;height:auto;object-fit:contain}.portfolio .case-info h3{font-size:17px}@media(max-width:700px){.gallery-more{font-size:14px;margin-top:26px}.portfolio .case-info h3{font-size:16px}.gallery-count{font-size:11px;margin-bottom:20px}}
