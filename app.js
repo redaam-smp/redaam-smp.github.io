@@ -29,7 +29,7 @@ if ('IntersectionObserver' in window) {
  const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
   entry.target.classList.toggle('is-visible', entry.isIntersecting);
  }),{threshold:0.08});
- document.querySelectorAll('.intro-grid,.principles,.section-heading,.case,.menu-grid,.director-grid,.steps,.hygiene,.faq-grid,.contact-grid,.studio-photo,.process-films').forEach(element=>{
+ document.querySelectorAll('.dot-heading,.dot-card,.intro-grid,.principles,.section-heading,.case,.menu-grid,.director-grid,.steps,.hygiene,.faq-grid,.contact-grid,.studio-photo,.process-films').forEach(element=>{
   element.classList.add('reveal');revealObserver.observe(element);
  });
 }
