@@ -168,3 +168,7 @@ body{font-family:'Noto Sans KR',sans-serif;font-weight:400;padding-bottom:112px}
 /* Approved concise comparison copy, with larger body text. */
 .dot-card p{font-size:18px;line-height:1.95;letter-spacing:-.35px}.dot-card-dark p{color:#d2d2d2}
 @media(max-width:700px){.dot-card p{font-size:16px;line-height:1.95;letter-spacing:-.3px}}
+
+/* Enlarge comparison section and card headings. */
+.dot-heading h2{font-size:52px;line-height:1.45}.dot-card h3{font-size:29px;line-height:1.5}
+@media(max-width:700px){.dot-heading h2{font-size:36px;line-height:1.5}.dot-card h3{font-size:25px;line-height:1.55;letter-spacing:-.8px}}
