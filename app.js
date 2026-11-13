@@ -16,12 +16,7 @@ function showCases(category, reset=true) {
 filterButtons.forEach(button=>button.addEventListener('click',()=>showCases(button.dataset.filter)));
 document.querySelector('#gallery-more').addEventListener('click',()=>{galleryLimit+=4;showCases(galleryCategory,false);});
 showCases('women');
-document.querySelector('#copy-address').addEventListener('click', async () => {
-  const status = document.querySelector('#copy-status');
-  const address = '수원 인계점: 경기 수원시 팔달구 인계로124번길 9 203호\n화성 봉담점: 경기 화성시 효행구 봉담읍 와우안길 80 서후 팰리스 3층 301호';
-  try { await navigator.clipboard.writeText(address); status.textContent = '주소를 복사했습니다.'; }
-  catch { status.textContent = address; }
-});
+window.addEventListener('pageshow', () => { document.querySelectorAll('#faq details').forEach(item => { item.open = false; }); });
 document.querySelector('#year').textContent = new Date().getFullYear();
 const photoDialog = document.querySelector('#photo-dialog');
 let photoTrigger;
