@@ -31,13 +31,23 @@ document.querySelectorAll('[data-full]').forEach(button => button.addEventListen
 photoDialog.querySelector('.dialog-close').addEventListener('click',()=>photoDialog.close());
 photoDialog.addEventListener('click',e=>{if(e.target===photoDialog)photoDialog.close();});
 photoDialog.addEventListener('close',()=>photoTrigger?.focus());
+// Observe individual text blocks so long sections animate as each line enters view.
 if ('IntersectionObserver' in window) {
- const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-  entry.target.classList.toggle('is-visible', entry.isIntersecting);
- }),{threshold:0.08});
- document.querySelectorAll('.dot-heading,.dot-card,.intro-grid,.principles,.section-heading,.case,.menu-grid,.director-grid,.steps,.hygiene,.faq-grid,.contact-grid,.studio-photo,.process-films').forEach(element=>{
-  element.classList.add('reveal');revealObserver.observe(element);
+ const textObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+  entry.target.classList.toggle('text-in-view', entry.isIntersecting);
+ }), { threshold:0.12, rootMargin:'0px 0px -24px 0px' });
+ const sectionMotions = {approach:'soft-focus',concerns:'side-reveal','dot-design':'curtain-reveal',method:'step-rise',portfolio:'gentle-zoom',faq:'side-reveal',menu:'step-rise',space:'soft-focus',contact:'curtain-reveal'};
+ document.querySelectorAll('main section:not(#top)').forEach(section => {
+  section.querySelectorAll('h2,h3,p,summary,dt,dd,.section-label,.signature,.eyebrow,.dot-label').forEach((element,index) => {
+   if (element.closest('#top') || element.querySelector('h2,h3,p,summary,dt,dd') || element.classList.contains('section-label') && element.parentElement.closest('.section-label')) return;
+   element.classList.add('text-motion');
+   element.dataset.motion = element.matches('h2,h3') ? (sectionMotions[section.id] || 'gentle-zoom') : element.matches('dt,.eyebrow,.section-label') ? 'letter-settle' : 'copy-rise';
+   element.style.setProperty('--text-delay', `${(index%3)*0.08}s`);
+   textObserver.observe(element);
+  });
  });
+ const imageObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('is-visible',entry.isIntersecting)),{threshold:0.08});
+ document.querySelectorAll('.studio-photo,.director-portrait,.case-photo,.process-film').forEach(element=>{element.classList.add('reveal');imageObserver.observe(element);});
 }
 
 // Keep decorative motion preferences separate from the requested studio films.
