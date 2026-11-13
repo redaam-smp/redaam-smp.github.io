@@ -177,3 +177,6 @@ body{font-family:'Noto Sans KR',sans-serif;font-weight:400;padding-bottom:112px}
 
 /* Two studio addresses */
 .location-heading>p{margin-top:24px;color:#666}.branch-grid{display:grid;grid-template-columns:1fr 1fr;gap:38px;margin-top:48px}.branch-card{border-top:1px solid #111;padding-top:25px}.branch-card h3{font-size:28px;margin:14px 0 22px}.branch-address{font-size:18px;line-height:1.9}.branch-note{font-size:13px;color:#666;margin-top:16px}.visit-info dt{white-space:nowrap}@media(max-width:650px){.branch-grid{grid-template-columns:1fr;gap:36px;margin-top:32px}.branch-card h3{font-size:24px}.branch-address{font-size:16px}.location-heading h2{font-size:30px;letter-spacing:-1.4px}}
+
+/* Slim black hygiene capsules */
+.space-section .hygiene ul{gap:12px 14px;align-content:start;color:#fff;font-size:13px;line-height:1.6}.space-section .hygiene li{background:#080808;color:#fff;border-radius:999px;padding:9px 16px;display:flex;align-items:center;justify-content:center;text-align:center;min-height:40px;word-break:keep-all}.space-section .hygiene li:before{color:#fff;margin-right:9px;flex-shrink:0;font-size:12px}@media(max-width:650px){.space-section .hygiene ul{grid-template-columns:1fr;gap:9px;font-size:12px}.space-section .hygiene li{padding:9px 14px;min-height:38px}}
