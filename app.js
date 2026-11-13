@@ -85,3 +85,6 @@ document.querySelectorAll('[data-concern]').forEach(button => {
   document.querySelectorAll('.concern-panel').forEach(panel => { panel.hidden = panel.id !== button.getAttribute('aria-controls'); });
  });
 });
+
+// Consultation CTAs outside the hero; fixed dock animates only its text.
+document.querySelectorAll('a[href="https://pf.kakao.com/_tzHvn"]').forEach(link => { if (!link.closest('#top, .header, .mobile-dock')) link.classList.add('consult-bounce'); });
