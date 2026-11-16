@@ -206,3 +206,6 @@ body{font-family:'Noto Sans KR',sans-serif;font-weight:400;padding-bottom:112px}
 
 /* Selected gallery category inverts to white */
 .portfolio .filters.gender-filters button.active{background:#fff;color:#080808;border:1px solid #080808;box-shadow:none}.portfolio .filters.gender-filters button.active:after{display:none}
+
+/* Keep copy readable throughout entrances; avoid clipping-driven observer flicker. */
+@keyframes copy-rise{from{transform:translateY(12px)}to{transform:translateY(0)}}@keyframes soft-focus{from{transform:translateY(10px)}to{transform:translateY(0)}}@keyframes side-reveal{from{transform:translateX(-16px)}to{transform:translateX(0)}}@keyframes curtain-reveal{from{transform:translateY(14px)}to{transform:translateY(0)}}@keyframes step-rise{0%{transform:translateY(18px)}75%{transform:translateY(-2px)}100%{transform:translateY(0)}}@keyframes gentle-zoom{from{transform:scale(.97);transform-origin:left center}to{transform:scale(1);transform-origin:left center}}@keyframes letter-settle{from{transform:translateX(8px)}to{transform:translateX(0)}}.text-motion,.text-motion.text-in-view{opacity:1;clip-path:none;filter:none}

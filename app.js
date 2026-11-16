@@ -34,7 +34,7 @@ photoDialog.addEventListener('close',()=>photoTrigger?.focus());
 // Observe individual text blocks so long sections animate as each line enters view.
 if ('IntersectionObserver' in window) {
  const textObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-  entry.target.classList.toggle('text-in-view', entry.isIntersecting);
+  if (entry.isIntersecting) { entry.target.classList.add('text-in-view'); textObserver.unobserve(entry.target); }
  }), { threshold:0.12, rootMargin:'0px 0px -24px 0px' });
  const sectionMotions = {approach:'soft-focus',concerns:'side-reveal','dot-design':'curtain-reveal',method:'step-rise',portfolio:'gentle-zoom',faq:'side-reveal',menu:'step-rise',space:'soft-focus',contact:'curtain-reveal'};
  document.querySelectorAll('main section:not(#top)').forEach(section => {
@@ -46,7 +46,7 @@ if ('IntersectionObserver' in window) {
    textObserver.observe(element);
   });
  });
- const imageObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('is-visible',entry.isIntersecting)),{threshold:0.08});
+ const imageObserver = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('is-visible'); imageObserver.unobserve(entry.target); } }),{threshold:0.08});
  document.querySelectorAll('.studio-photo,.director-portrait,.case-photo,.process-film').forEach(element=>{element.classList.add('reveal');imageObserver.observe(element);});
 }
 
