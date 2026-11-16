@@ -98,3 +98,16 @@ document.querySelectorAll('[data-concern]').forEach(button => {
 
 // Consultation CTAs outside the hero; fixed dock animates only its text.
 document.querySelectorAll('a[href="https://pf.kakao.com/_tzHvn"]').forEach(link => { if (!link.closest('#top, .header, .mobile-dock')) link.classList.add('consult-bounce'); });
+
+// One delegated event per interaction, including dynamically revealed gallery controls.
+document.addEventListener('click', event => {
+ const control = event.target.closest('a,button,summary,[role="button"]');
+ if (!control || control.matches(':disabled,[aria-disabled="true"]') || typeof window.fbq !== 'function') return;
+ const href = control.getAttribute('href') || '';
+ const section = control.closest('section')?.id || (control.closest('.mobile-dock') ? 'fixed_dock' : control.closest('.header') ? 'header' : 'footer');
+ const action = href.startsWith('tel:') ? 'phone' : href.includes('pf.kakao.com') ? 'kakao' : href.includes('naver.com') ? 'naver_booking' : control.matches('.case-photo') ? 'photo_open' : control.matches('.dialog-close') ? 'photo_close' : control.hasAttribute('data-filter') ? 'gallery_filter' : control.hasAttribute('data-concern') ? 'concern_tab' : control.matches('summary') ? 'accordion_toggle' : href.startsWith('#') ? 'navigation' : 'button';
+ const label = (control.getAttribute('aria-label') || control.textContent || action).replace(/01[016789][-\s]?\d{3,4}[-\s]?\d{4}/g,'매장 전화').replace(/\s+/g,' ').trim().slice(0,100);
+ const data = {button_name:label,button_action:action,section:section};
+ window.fbq('trackCustom','ButtonClick',data);
+ if (action === 'phone' || action === 'kakao') window.fbq('track','Contact',{content_name:action,content_category:section});
+});
