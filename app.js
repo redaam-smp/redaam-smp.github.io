@@ -99,6 +99,26 @@ document.querySelectorAll('[data-concern]').forEach(button => {
 // Consultation CTAs outside the hero; fixed dock animates only its text.
 document.querySelectorAll('a[href="https://pf.kakao.com/_tzHvn"]').forEach(link => { if (!link.closest('#top, .header, .mobile-dock')) link.classList.add('consult-bounce'); });
 
+// Add the Bongdam Naver booking URL here when it becomes available.
+const branchBookingLinks = { bongdam: '' };
+const bongdamPending = document.querySelector('.branch-booking-pending');
+if (bongdamPending && branchBookingLinks.bongdam) {
+ try {
+  const bookingURL = new URL(branchBookingLinks.bongdam);
+  if (bookingURL.protocol === 'https:' && (bookingURL.hostname === 'naver.com' || bookingURL.hostname.endsWith('.naver.com') || bookingURL.hostname === 'naver.me')) {
+   const bookingLink = document.createElement('a');
+   bookingLink.href = bookingURL.href;
+   bookingLink.target = '_blank';
+   bookingLink.rel = 'noopener noreferrer';
+   bookingLink.dataset.branch = 'bongdam';
+   const bookingLabel = bongdamPending.querySelector('.booking-label');
+   if (bookingLabel) bookingLink.append(bookingLabel);
+   else bookingLink.textContent = '봉담점 네이버 예약';
+   bongdamPending.replaceWith(bookingLink);
+  }
+ } catch (_) { /* Keep the pending state for an invalid URL. */ }
+}
+
 // One delegated event per interaction, including dynamically revealed gallery controls.
 document.addEventListener('click', event => {
  const control = event.target.closest('a,button,summary,[role="button"]');
